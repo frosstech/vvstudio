@@ -139,19 +139,19 @@ jQuery(document).ready(function($) {
 	        600:{
 	        	margin: 0,
 	        	nav: true,
-	          items: 2
+	          items: 1
 	        },
 	        1000:{
 	        	margin: 0,
 	        	stagePadding: 0,
 	        	nav: true,
-	          items: 3
+	          items: 1
 	        },
 	        1200:{
 	        	margin: 0,
 	        	stagePadding: 0,
 	        	nav: true,
-	          items: 4
+	          items: 1
 	        }
 		    }
 			});

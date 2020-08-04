@@ -619,7 +619,7 @@ h1, h2, h3, h4, h5,
   position: relative; }
   .intro-section, .intro-section .container > .row {
     height: 100vh;
-    min-height: 900px; }
+    min-height: 950px; }
   .intro-section.single-cover, .intro-section.single-cover .container > .row {
     height: 50vh;
     min-height: 400px; }
@@ -629,12 +629,21 @@ h1, h2, h3, h4, h5,
     color: #fff;
     margin-bottom: 1.5rem; }
 
+    .intro-section .formbox {
+      margin-top: 200px;
+      margin-bottom: 100px;
+    }
+
     @media (max-width: 991.98px) {
       .intro-section h1 {
-        margin-top: 200px; } }
+        margin-top: 200px; }
+      .intro-section .formbox {
+        margin-top: 60px;
+      }
+      }
     @media (max-width: 991.98px) {
       .intro-section, .intro-section .container > .row{
-        min-height: 1200px;
+        min-height: 1250px;
       }
     }
   .intro-section p {

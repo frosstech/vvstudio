@@ -1,59 +1,23 @@
 var router = require('express').Router()
+var fire = require('./fire')
 var bodyParser = require('body-parser')
+var db = fire.firestore()
 router.use(bodyParser.json())
-const checksum_lib = require('../paytm/checksum/checksum')
+const checksum_lib = require('./checksum')
 var today = new Date()
 const port = 3000
-  
-router.post("/filter", function (req, res) {
-    var onionarray=[];
-    var caste=req.body.caste;
-    var filtercaste=caste.toLowerCase();
-    console.log(req.body.optradio+req.body.caste+req.body.age+req.body.agetype)
-    if(req.body.optradio && req.body.caste && req.body.age && req.body.agetype){
-        if(req.body.agetype=="greater"){
-            let query = usersRef.where('gender', '==',req.body.optradio).where('caste', '==',filtercaste).where('age', '>=',req.body.age).get()
-            .then(snapshot => {
-            if (snapshot.empty) {
-                res.render("queries.ejs", {datas:onionarray,"message":"No Profile Matches"});
-                return;
-            }  
-            snapshot.forEach(doc => {
-                incoming = doc.data();
-                onionarray.push(incoming);
-            });
-            res.render("queries.ejs", {datas:onionarray,"message":""});
-            })
-            .catch(err => {
-                console.log(err);
-                res.render("queries.ejs", {datas:onionarray,"message":err});
-            });
-        }
-        else{
-            let query = usersRef.where('gender', '==',req.body.optradio).where('caste', '==',req.body.caste).where('age', '<=',req.body.age).get()
-            .then(snapshot => {
-            if (snapshot.empty) {
-                res.render("queries.ejs", {datas:onionarray,"message":"No Profile Matches"});
-                return;
-            }  
-            snapshot.forEach(doc => {
-                incoming = doc.data();
-                onionarray.push(incoming);
-            });
-            res.render("queries.ejs", {datas:onionarray,"message":""});
-            })
-            .catch(err => {
-                res.render("queries.ejs", {datas:onionarray,"message":err});
-            });
-        }
-    }
-    else{
-        res.render("filter.ejs",{"message":"Every Field Must be selected and filled"});
-    }
-});
 
-router.post("/check", function (req, res) {
-    console.log(req.body);
+
+router.post("/check", async function (req, res) {
+    await db.collection('appointment').add({
+        name: req.body.name,
+        email: req.body.email,
+        mobilenumber: req.body.mobilenumber,
+        service: req.body.service,
+        payment: req.body.payment,
+        date: req.body.date,
+        timestamp: new Date(),
+    });
     if(req.body.payment=="Pay later"){
         res.render("success.ejs");
     }
@@ -71,7 +35,7 @@ router.get('/payment', (req, res)=>{
     params['ORDER_ID'] = 'ORD' + today.getDate() + today.getHours() + today.getMinutes( )+ today.getSeconds(),
     params['CUST_ID'] = 'CUST' + today.getDate() + today.getHours() + today.getMinutes( )+ today.getSeconds(),
     params['TXN_AMOUNT'] = '100',
-    params['CALLBACK_URL'] = 'http://localhost:'+port+'/callback',
+    params['CALLBACK_URL'] = 'http://vvstudio.herokuapp.com/',
     params['EMAIL'] = 'test@gmail.com',
     params['MOBILE_NO'] = '8489797055'
 

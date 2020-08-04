@@ -39,10 +39,11 @@ app.get("/", function (req, res) {
   res.render("index.ejs");
 });
 
+
 //Handle Production
 if(process.env.NODE_ENV === 'production'){
   // Static folder
-  app.use(express.static(__dirname+'/views/'+'/static/'+'/route/'+'paytm'));
+  app.use(express.static(__dirname+'/views/'+'/static/'+'/route/'+'/paytm/'));
 
   //Handle SPA
   app.get(/.*/, (req,res)=> res.sendFile(__dirname+'/views/index.ejs'));
