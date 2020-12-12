@@ -3,7 +3,9 @@ body {
   line-height: 1.7;
   color: gray;
   font-weight: 300;
-  font-size: 1.1rem; }
+  font-size: 1.1rem;
+  overflow-x: hidden; 
+}
 
 ::-moz-selection {
   background: #000;
@@ -1169,4 +1171,67 @@ h1, h2, h3, h4, h5,
 
   .flist a{
     font-weight: 500;
+  }
+
+ 
+  #pop-up {
+    text-align: center;
+    color: #000;
+    width: 600px;
+    height: 550px;
+    background: blueviolet;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+  }
+
+  #pop-up h1 {
+    border: 6px solid #fff;
+    border-radius: 20px;
+    font-weight: 800;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  #pop-up h3{
+    font-style: italic;
+    text-align: left;
+  }
+
+  #pop-up p{
+    font-style: italic;
+    text-align: left;
+  }
+
+  @media (max-width: 991.98px) {
+    #pop-up {
+      top: 50%;
+      left: 40%;
+      width: 350px;
+      height: 650px;
+      z-index: 2000;
+      
+    }
+    #pop-up h3{
+      font-size: 12px;
+    }
+
+    #pop-up p{
+      font-size: 12px;
+    }
+  }
+
+  #close-btn {
+    border: solid 1px #000;
+    border-radius: 30px;
+    outline: none;
+    background: blueviolet;
+    margin-bottom: 10px;
+    cursor: pointer;
   }
